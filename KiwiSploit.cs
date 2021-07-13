@@ -13,6 +13,7 @@ namespace KiwiSploit
 {
     public partial class KiwiSploit : Form
     {
+        private readonly KiwiSploit12 fm = new KiwiSploit12();
         EasyExploits.Module module = new EasyExploits.Module();
         WeAreDevs_API.ExploitAPI wrd = new WeAreDevs_API.ExploitAPI();
         public KiwiSploit()
@@ -103,7 +104,24 @@ namespace KiwiSploit
 
         private void button9_Click(object sender, EventArgs e)
         {
-            fastColoredTextBox1.Text = " ";
+            fastColoredTextBox1.Text = "";
+        }
+
+        private void fastColoredTextBox1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            fm.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            wrd.SendLuaScript(fastColoredTextBox1.Text);
+
         }
     }
 }
