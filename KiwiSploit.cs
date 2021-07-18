@@ -16,6 +16,10 @@ namespace KiwiSploit
         private readonly KiwiSploit12 fm = new KiwiSploit12();
         EasyExploits.Module module = new EasyExploits.Module();
         WeAreDevs_API.ExploitAPI wrd = new WeAreDevs_API.ExploitAPI();
+        KrnlAPI.MainAPI GetAPI = new KrnlAPI.MainAPI();
+        KiwiModule.Kiwi kiwi = new KiwiModule.Kiwi();
+        AnemoAPI.Anemo Anemo = new AnemoAPI.Anemo();
+        
         public KiwiSploit()
         {
             InitializeComponent();
@@ -112,16 +116,46 @@ namespace KiwiSploit
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            fm.Show();
-            this.Hide();
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             wrd.SendLuaScript(fastColoredTextBox1.Text);
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            module.ExecuteScript("");
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            KrnlAPI.MainAPI.Inject();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            KrnlAPI.MainAPI.Execute(fastColoredTextBox1.Text);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            kiwi.LaunchExploit();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            kiwi.ExecuteScript(fastColoredTextBox1.Text);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            Anemo.InjectAnemo();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            Anemo.ExecuteScript(fastColoredTextBox1.Text);
         }
     }
 }

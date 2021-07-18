@@ -85,7 +85,7 @@ namespace KiwiSploit
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(85, 64);
+            this.webBrowser1.Location = new System.Drawing.Point(30, 64);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(610, 282);

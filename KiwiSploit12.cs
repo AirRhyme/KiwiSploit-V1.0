@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using injection;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace KiwiSploit
 {
     public partial class KiwiSploit12 : Form
     {
+        // public KiwiSploit ks = new KiwiSploit();
         EasyExploits.Module module = new EasyExploits.Module();
         WeAreDevs_API.ExploitAPI wrd = new WeAreDevs_API.ExploitAPI();
         public KiwiSploit12()
@@ -38,8 +40,27 @@ namespace KiwiSploit
 
         private void button1_Click(object sender, EventArgs e)
         {
-            module.ExecuteScript(webBrowser1.Text);
-            wrd.SendLuaCScript(webBrowser1.Text);
+            HtmlDocument document = webBrowser1.Document;
+            string scriptName = "GetText";
+            object[] args = new string[0];
+            object obj = document.InvokeScript(scriptName, args);
+            string script = obj.ToString();
+            module.ExecuteScript(script);
+            wrd.SendLuaCScript(script);
+        }
+
+
+
+
+        public String GetText()
+        {
+            HtmlDocument document = webBrowser1.Document;
+            string scriptName = "GetText";
+            object[] args = new string[0];
+            object obj = document.InvokeScript(scriptName, args);
+            string script = obj.ToString();
+
+            return script;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -62,60 +83,6 @@ namespace KiwiSploit
             webBrowser1.Text = File.ReadAllText($"./Scripts/{listBox1.SelectedItem}");
         }
 
-        private async void KwiwSploit12_Load(object sender, EventArgs e)
-        {
-            WebClient wc = new WebClient();
-            wc.Proxy = null;
-            try
-            {
-                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION", true);
-                string friendlyName = AppDomain.CurrentDomain.FriendlyName;
-                bool flag2 = registryKey.GetValue(friendlyName) == null;
-                if (flag2)
-                {
-                    registryKey.SetValue(friendlyName, 11001, RegistryValueKind.DWord);
-                }
-                registryKey = null;
-                friendlyName = null;
-            }
-            catch (Exception)
-            {
-            }
-            webBrowser1.Url = new Uri(string.Format("file:///{0}/Monaco/Monaco.html", Directory.GetCurrentDirectory()));
-            await Task.Delay(500);
-            webBrowser1.Document.InvokeScript("SetTheme", new string[]
-            {
-                   "Dark" 
-                   /*
-                    There are 2 Themes Dark and Light
-                   */
-            });
-            addBase();
-            addMath();
-            addGlobalNS();
-            webBrowser1.Document.InvokeScript("SetText", new object[]
-            {
-                 "-- Execute Scripts Here--"
-            });
-            listBox1.Items.Clear();
-            Functions.addToScriptList(listBox1, "./Scripts", "*.txt");
-            Functions.addToScriptList(listBox1, "./Scripts", "*.lua");
-        }
-
-        private void addGlobalNS()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void addMath()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void addBase()
-        {
-            throw new NotImplementedException();
-        }
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -149,9 +116,16 @@ namespace KiwiSploit
 
         private void button8_Click(object sender, EventArgs e)
         {
-             MessageBox.Show("Sorry, you are stuck here");
-         
+            MessageBox.Show("Sorry, you are stuck here");
+            this.Hide();
+
         }
+
+
+
+
+
+
 
     }
 }
