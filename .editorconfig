@@ -2,3 +2,6 @@
 
 # IDE0052: Remove unread private members
 dotnet_diagnostic.IDE0052.severity = silent
+
+# IDE0004: Remove Unnecessary Cast
+dotnet_diagnostic.IDE0004.severity = suggestion

@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("KiwiSploit")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Kiwi Sploit for roblox")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("AirRhyme on github")]
 [assembly: AssemblyProduct("KiwiSploit")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
